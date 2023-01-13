@@ -1,6 +1,6 @@
-# DMIT2015 Fall 2022 assignments
+# DMIT2015 Winter 2023 assignments
 
-Jacky Zapanta
+Jacqueline Zapanta
 
 jackyzapanta
 
