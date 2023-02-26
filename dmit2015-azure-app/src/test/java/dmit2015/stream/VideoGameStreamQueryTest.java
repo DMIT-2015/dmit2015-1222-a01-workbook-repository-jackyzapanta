@@ -1,5 +1,8 @@
-package dmit2015.jpa;
+package dmit2015.stream;
 
+import dmit2015.streamAPI.GamingPlatform;
+import dmit2015.streamAPI.VideoGame;
+import dmit2015.streamAPI.VideoGameStreamQuery;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,9 +15,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class VideoGameJavaSeRepositoryTest {
-
-    final List<VideoGame> gameList = Arrays.asList(
+class VideoGameStreamQueryTest {
+    static final List<VideoGame> gameList = Arrays.asList(
             new VideoGame("Diablo III Eternal Collection", GamingPlatform.NINTENDO, 34.99, 12919269L),
             new VideoGame("NBA 2K20", GamingPlatform.PLAYSTATION, 49.99, 13720461L),
             new VideoGame("NBA 2K20", GamingPlatform.NINTENDO, 49.99, 13720465L),
@@ -31,71 +33,36 @@ class VideoGameJavaSeRepositoryTest {
             new VideoGame("Star Wars Jedi: Fallen Order (PC)", GamingPlatform.PC_GAMING, 19.97, 13508834L)
     );
 
-    static VideoGameJavaSeRepository _gameRepository;
+    static VideoGameStreamQuery _gameRepository;
 
     @BeforeAll
     static void beforeAll() {
-        _gameRepository = new VideoGameJavaSeRepository();
+        _gameRepository = new VideoGameStreamQuery(gameList);
     }
 
     @BeforeEach
     void setUp() {
-//        _gameRepository.deleteAll();
-        gameList.forEach(game -> _gameRepository.create(game));
+
     }
 
     @AfterEach
     void tearDown() {
-        _gameRepository.deleteAll();
 
     }
-
     @Test
-    void create() {
-        VideoGame newVideoGame = new VideoGame();
-        newVideoGame.setTitle("Nintendo Switch Sports");
-        newVideoGame.setPlatform(GamingPlatform.NINTENDO);
-        newVideoGame.setPrice(64.99);
-        newVideoGame.setWebCode(15971774L);
-        _gameRepository.create(newVideoGame);
-        // There should be 1 more games
-        assertEquals(gameList.size() + 1, _gameRepository.findAll().size());
-        // Find the game we just added
-        Optional<VideoGame> optionalVideoGame = _gameRepository.findById(newVideoGame.getWebCode());
+    void findOptionalById() {
+        Optional<VideoGame> optionalVideoGame = _gameRepository.findOptionalById(13208397L);
         assertTrue(optionalVideoGame.isPresent());
         VideoGame existingVideoGame = optionalVideoGame.orElseThrow();
         assertNotNull(existingVideoGame);
-        // Compare the game properties
-        assertEquals(newVideoGame.getTitle(), existingVideoGame.getTitle());
-        assertEquals(newVideoGame.getPlatform(), existingVideoGame.getPlatform());
-        assertEquals(newVideoGame.getPrice(), existingVideoGame.getPrice());
-    }
-
-    @Test
-    void update() {
-        Optional<VideoGame> optionalVideoGame = _gameRepository.findById(12612447L);
-        assertTrue(optionalVideoGame.isPresent());
-        VideoGame existingVideoGame = optionalVideoGame.orElseThrow();
-        existingVideoGame.setPrice(79.99);
-        _gameRepository.update(existingVideoGame);
-        // The number of games should not change
-        assertEquals(gameList.size(), _gameRepository.findAll().size());
-        // Find the game we just added
-        optionalVideoGame = _gameRepository.findById(12612447L);
-        assertTrue(optionalVideoGame.isPresent());
-        VideoGame updatedVideoGame = optionalVideoGame.orElseThrow();
-        assertNotNull(updatedVideoGame);
-        // Compare the game properties
-        assertEquals(updatedVideoGame.getTitle(), existingVideoGame.getTitle());
-        assertEquals(updatedVideoGame.getPlatform(), existingVideoGame.getPlatform());
-        assertEquals(updatedVideoGame.getPrice(), existingVideoGame.getPrice());
+        assertEquals("Final Fantasy X/X-2 HD Remaster (Switch)", existingVideoGame.getTitle());
+        assertEquals(GamingPlatform.NINTENDO, existingVideoGame.getPlatform());
+        assertEquals(34.99, existingVideoGame.getPrice());
     }
 
     @Test
     void findById() {
-        Optional<VideoGame> optionalVideoGame = _gameRepository.findById(13208397L);
-        assertTrue(optionalVideoGame.isPresent());
-        VideoGame existingVideoGame = optionalVideoGame.orElseThrow();
+        VideoGame existingVideoGame = _gameRepository.findById(13208397L);
         assertNotNull(existingVideoGame);
         assertEquals("Final Fantasy X/X-2 HD Remaster (Switch)", existingVideoGame.getTitle());
         assertEquals(GamingPlatform.NINTENDO, existingVideoGame.getPlatform());
@@ -106,16 +73,6 @@ class VideoGameJavaSeRepositoryTest {
     void findAll() {
         List<VideoGame> games = _gameRepository.findAll();
         assertEquals(14, games.size());
-    }
-
-    @Test
-    void delete() {
-        Optional<VideoGame> optionalVideoGame = _gameRepository.findById(13208397L);
-        assertTrue(optionalVideoGame.isPresent());
-        VideoGame existingVideoGame = optionalVideoGame.orElseThrow();
-        _gameRepository.delete(existingVideoGame);
-        optionalVideoGame = _gameRepository.findById(13208397L);
-        assertTrue(optionalVideoGame.isEmpty());
     }
 
     @Test
@@ -160,7 +117,7 @@ class VideoGameJavaSeRepositoryTest {
     @Test
     void sortByPlatformThenTitleThenPriceDescending() {
         List<VideoGame> resultList = _gameRepository.sortByPlatformThenTitleThenPriceDescending();
-//        resultList.forEach(System.out::println);
+        resultList.forEach(System.out::println);
         // There first game should be Diablo III Eternal Collection for NINTENDO
         assertEquals("Diablo III Eternal Collection", resultList.get(0).getTitle());
         assertEquals(GamingPlatform.NINTENDO, resultList.get(0).getPlatform());
@@ -182,7 +139,6 @@ class VideoGameJavaSeRepositoryTest {
         // The sum of all prices should be 529.84
         assertEquals(14, _gameRepository.count());
     }
-
     @Test
     void sumAllPrices() {
         // The sum of all prices should be 529.84

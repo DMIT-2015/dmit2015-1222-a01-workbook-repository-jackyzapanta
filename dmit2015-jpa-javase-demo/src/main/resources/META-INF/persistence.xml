@@ -23,49 +23,49 @@
         </properties>
     </persistence-unit>
 
-<!--    <persistence-unit name="local-mssql-dmit2015-jpa-pu" transaction-type="RESOURCE_LOCAL">-->
-<!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+    <persistence-unit name="local-mssql-dmit2015-jpa-pu" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-<!--        <properties>-->
-<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>-->
-<!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
 
-<!--            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />-->
-<!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://localhost;databaseName=DMIT2015_1222_CourseDB;TrustServerCertificate=true" />-->
-<!--            <property name="jakarta.persistence.jdbc.user" value="user2015" />-->
-<!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://localhost;databaseName=DMIT2015_1222_CourseDB;TrustServerCertificate=true" />
+            <property name="jakarta.persistence.jdbc.user" value="user2015" />
+            <property name="jakarta.persistence.jdbc.password" value="Password2015" />
 
-<!--        </properties>-->
-<!--    </persistence-unit>-->
+        </properties>
+    </persistence-unit>
 
-<!--    <persistence-unit name="remote-mssql-dmit2015-jpa-pu" transaction-type="RESOURCE_LOCAL">-->
-<!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+    <persistence-unit name="remote-mssql-dmit2015-jpa-pu" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-<!--        <properties>-->
-<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>-->
-<!--            &lt;!&ndash; database.action: drop-and-create, create, update, none &ndash;&gt;-->
-<!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <!-- database.action: drop-and-create, create, update, none -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
 
-<!--            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />-->
-<!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://capstone1.dmit.sast.ca;databaseName=DMIT2015_1222_E01_yourNaitUseranme;TrustServerCertificate=true" /> &lt;!&ndash; Replace yourNaitUsername value &ndash;&gt;-->
-<!--            <property name="jakarta.persistence.jdbc.user" value="yourNaitUsername" /> &lt;!&ndash; Replace yourNaitUsername value &ndash;&gt;-->
-<!--            <property name="jakarta.persistence.jdbc.password" value="RemotePassword.YourNaitStudentId" /> &lt;!&ndash; Replace YourNaitStudentId value &ndash;&gt;-->
+            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://capstone1.dmit.sast.ca;databaseName=DMIT2015_1222_E01_yourNaitUseranme;TrustServerCertificate=true" /> <!-- Replace yourNaitUsername value -->
+            <property name="jakarta.persistence.jdbc.user" value="yourNaitUsername" /> <!-- Replace yourNaitUsername value -->
+            <property name="jakarta.persistence.jdbc.password" value="RemotePassword.YourNaitStudentId" /> <!-- Replace YourNaitStudentId value -->
 
-<!--        </properties>-->
-<!--    </persistence-unit>-->
+        </properties>
+    </persistence-unit>
 
-<!--    <persistence-unit name="oracle-jpa-user2015-pu" transaction-type="RESOURCE_LOCAL">-->
-<!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+    <persistence-unit name="oracle-jpa-user2015-pu" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-<!--        <properties>-->
-<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>-->
-<!--            <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />-->
-<!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />-->
-<!--            <property name="jakarta.persistence.jdbc.user" value="user2015" />-->
-<!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
+            <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />
+            <property name="jakarta.persistence.jdbc.user" value="user2015" />
+            <property name="jakarta.persistence.jdbc.password" value="Password2015" />
 
-<!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
-<!--        </properties>-->
-<!--    </persistence-unit>-->
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+        </properties>
+    </persistence-unit>
 
 </persistence>
